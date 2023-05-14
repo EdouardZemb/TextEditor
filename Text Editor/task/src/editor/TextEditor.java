@@ -19,7 +19,11 @@ public class TextEditor extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setTitle(FRAME_TITLE);
 
-        add(createTextAreaScrollPane(), BorderLayout.CENTER);
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(new EmptyBorder(TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN));
+        panel.add(createTextAreaScrollPane(), BorderLayout.CENTER);
+
+        getContentPane().add(panel, BorderLayout.CENTER);
 
         setVisible(true);
     }
