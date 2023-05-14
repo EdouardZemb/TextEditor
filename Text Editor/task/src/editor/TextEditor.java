@@ -1,6 +1,7 @@
 package editor;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TextEditor extends JFrame {
@@ -23,6 +24,11 @@ public class TextEditor extends JFrame {
         scrollPane.setName("TextAreaScrollPane");
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // Add margin to the text area
+        int margin = 10;
+        textArea.setBorder(new EmptyBorder(margin, margin, margin, margin));
+
         scrollPane.setVisible(true);
         return scrollPane;
     }
