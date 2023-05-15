@@ -10,7 +10,7 @@ public class TextEditor extends JFrame {
     private static final String FRAME_NAME = "TextEditorFrame";
     private static final String FRAME_TITLE = "Text Editor";
     private static final String TEXT_AREA_NAME = "TextArea";
-    private static final String TEXT_AREA_SCROLL_PANE_NAME = "TextAreaScrollPane";
+    private static final String TEXT_AREA_SCROLL_PANE_NAME = "ScrollPane";
     private static final int TEXT_AREA_MARGIN = 10;
 
     public TextEditor() {
@@ -21,11 +21,44 @@ public class TextEditor extends JFrame {
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN));
+        panel.add(createFilenamePanel(), BorderLayout.NORTH);
         panel.add(createTextAreaScrollPane(), BorderLayout.CENTER);
 
         getContentPane().add(panel, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    private JPanel createFilenamePanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(new EmptyBorder(TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN));
+
+        JLabel label = new JLabel("Filename:");
+        label.setName("FilenameLabel");
+        panel.add(label, BorderLayout.WEST);
+
+        JTextField textField = new JTextField();
+        textField.setName("FilenameField");
+        panel.add(textField, BorderLayout.CENTER);
+
+        JPanel buttonPanel = createFilenameButtonPanel();
+        panel.add(buttonPanel, BorderLayout.EAST);
+
+        return panel;
+    }
+
+    private JPanel createFilenameButtonPanel() {
+        JPanel panel = new JPanel(new GridLayout(1, 2));
+
+        JButton saveButton = new JButton("Save");
+        saveButton.setName("SaveButton");
+        panel.add(saveButton);
+
+        JButton loadButton = new JButton("Load");
+        loadButton.setName("LoadButton");
+        panel.add(loadButton);
+
+        return panel;
     }
 
     private JScrollPane createTextAreaScrollPane() {
