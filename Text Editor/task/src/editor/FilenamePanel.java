@@ -1,38 +1,49 @@
 package editor;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class FilenamePanel extends JPanel {
-    private static final String LABEL_TEXT = "Filename:";
-    private static final String LABEL_NAME = "FilenameLabel";
-    private static final String TEXT_FIELD_NAME = "FilenameField";
-    private static final int PANEL_MARGIN = 10;
+class FilenamePanel {
+    private static final String LABEL_TEXT = "Filename: ";
+
+    private JPanel panel;
+    private JLabel filenameLabel;
+    private JTextField filenameField;
+    private FilenameButtonPanel buttonPanel;
 
     public FilenamePanel() {
-        setLayout(new BorderLayout());
-        setBorder(new EmptyBorder(PANEL_MARGIN, PANEL_MARGIN, PANEL_MARGIN, PANEL_MARGIN));
-
-        addFilenameLabel();
-        addFilenameField();
-        addFilenameButtonPanel();
+        createComponents();
+        layoutComponents();
     }
 
-    private void addFilenameLabel() {
-        JLabel filenameLabel = new JLabel(LABEL_TEXT);
-        filenameLabel.setName(LABEL_NAME);
-        add(filenameLabel, BorderLayout.WEST);
+    private void createComponents() {
+        panel = new JPanel();
+        filenameLabel = new JLabel(LABEL_TEXT);
+        filenameField = new JTextField();
+        buttonPanel = new FilenameButtonPanel();
     }
 
-    private void addFilenameField() {
-        JTextField filenameField = new JTextField();
-        filenameField.setName(TEXT_FIELD_NAME);
-        add(filenameField, BorderLayout.CENTER);
+    private void layoutComponents() {
+        panel.setLayout(new BorderLayout());
+        panel.add(filenameLabel, BorderLayout.WEST);
+        panel.add(filenameField, BorderLayout.CENTER);
+        panel.add(buttonPanel.getComponent(), BorderLayout.EAST);
     }
 
-    private void addFilenameButtonPanel() {
-        FilenameButtonPanel buttonPanel = new FilenameButtonPanel();
-        add(buttonPanel, BorderLayout.EAST);
+    public JComponent getComponent() {
+        return panel;
+    }
+
+    public String getFilename() {
+        return filenameField.getText();
+    }
+
+    public void addSaveButtonListener(ActionListener listener) {
+        buttonPanel.addSaveButtonListener(listener);
+    }
+
+    public void addLoadButtonListener(ActionListener listener) {
+        buttonPanel.addLoadButtonListener(listener);
     }
 }
