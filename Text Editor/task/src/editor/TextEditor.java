@@ -21,44 +21,12 @@ public class TextEditor extends JFrame {
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN));
-        panel.add(createFilenamePanel(), BorderLayout.NORTH);
+        panel.add(new FilenamePanel(), BorderLayout.NORTH);
         panel.add(createTextAreaScrollPane(), BorderLayout.CENTER);
 
         getContentPane().add(panel, BorderLayout.CENTER);
 
         setVisible(true);
-    }
-
-    private JPanel createFilenamePanel() {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(new EmptyBorder(TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN, TEXT_AREA_MARGIN));
-
-        JLabel label = new JLabel("Filename:");
-        label.setName("FilenameLabel");
-        panel.add(label, BorderLayout.WEST);
-
-        JTextField textField = new JTextField();
-        textField.setName("FilenameField");
-        panel.add(textField, BorderLayout.CENTER);
-
-        JPanel buttonPanel = createFilenameButtonPanel();
-        panel.add(buttonPanel, BorderLayout.EAST);
-
-        return panel;
-    }
-
-    private JPanel createFilenameButtonPanel() {
-        JPanel panel = new JPanel(new GridLayout(1, 2));
-
-        JButton saveButton = new JButton("Save");
-        saveButton.setName("SaveButton");
-        panel.add(saveButton);
-
-        JButton loadButton = new JButton("Load");
-        loadButton.setName("LoadButton");
-        panel.add(loadButton);
-
-        return panel;
     }
 
     private JScrollPane createTextAreaScrollPane() {
